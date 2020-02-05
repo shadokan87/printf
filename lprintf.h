@@ -8,9 +8,7 @@
 # define DEC "0123456789"
 # define HEXD "0123456789abcdef"
 # define LPRINTF_H
-# define STAR 1
-# define ZERO 2
-# define DASH 3
+#define STAR '*'
 
 int	ft_atoi(char *str);
 int	ft_nbrlen(int n);
