@@ -1,4 +1,3 @@
-
 #include "lprintf.h"
 
 static int	count(unsigned int n, int b_len)
@@ -44,7 +43,7 @@ static int	check_base(char *base)
 	return (1);
 }
 
-static char	*ft_putnbr_base_ptr(unsigned long int n, char *base)
+char	*ft_putnbr_base_u(unsigned int n, char *base)
 {
 	int i;
 	char *ret;
@@ -65,15 +64,4 @@ static char	*ft_putnbr_base_ptr(unsigned long int n, char *base)
 	}
 	ret[i] = '\0';
 	return (ft_strrev(ret));
-}
-
-void	ft_putptr(unsigned long int ptr)
-{
-	if (ptr == 0)
-	{
-		ft_putstr("0x0");
-		return ;
-	}
-	ft_putstr("0x");
-	ft_putstr(ft_putnbr_base_ptr(ptr, HEXD));
 }
