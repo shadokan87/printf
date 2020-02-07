@@ -275,33 +275,39 @@ void	arg_putstr(curr *flag, va_list args, int *ret)
 }
 */
 
-int	ft_isprint(int c)
-{
-	if (c >= 32 && c < 127)
-		return (1);
-	return (0);
-}
-
-int	is_hidden(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isprint(str[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void ft_str(char *str)
 {
 	if (!str || str[0] == '\0')
 		write(1, "(null)", 6);
 	else
 		write(1, str, ft_strlen(str));
+}
+
+char	*hidden_of(char *str)
+{
+	int i;
+	char *hidden;
+
+	hidden = NULL;
+	i = 0;
+	while (*str)
+	{
+		ft_putchar_str(&hidden,
+		ft_putnbr_base((unsigned int)*str, HEXD)[0]);
+		str++;
+	}
+	return (hidden);
+}
+
+int	hidden_strlen(char *str, char *tmp)
+{
+	int i;
+
+	i = 0;
+	if (tmp && is_hidden(tmp))
+		return (ft_strlen(hidden_of(tmp)));
+	else
+		return (ft_strlen(str));
 }
 
 void	arg_putstr(curr *flag, va_list args, int *ret)
@@ -314,7 +320,7 @@ void	arg_putstr(curr *flag, va_list args, int *ret)
 	str = ft_strdup(tmp);
 	if (flag->precision >0 && flag->precision < ft_strlen(str))
 		str[flag->precision] = '\0';
-	to_ret = ft_strlen(str);
+	to_ret = hidden_strlen(str, tmp);
 	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
 	flag->precision > -1 ? ft_putstr(str) : 0;
 	flag->width_type == DASH ? write_width(flag, to_ret) : 0;

@@ -17,6 +17,8 @@ int	ft_atoi(char *str);
 int	ft_nbrlen(int n);
 int	ft_strlen(char *str);
 int	ft_printf(const char *str, ...);
+int	is_hidden(char *str);
+int	ft_isprint(int c);
 void	ft_putstr(char *str);
 void	ft_putnbr(int n);
 void	ft_putptr(unsigned long int ptr);
