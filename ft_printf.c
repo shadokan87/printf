@@ -13,18 +13,6 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putchar_str(char **str, char c)
-{
-	int c_index;
-	char *ptr;
-
-	c_index = ft_strlen(*str);
-	*str = ft_realloc(*str, ft_strlen(*str) + 2);
-	ptr = *str;
-	ptr[c_index] = c;
-	ptr[c_index + 1] = '\0';
-}
-
 int	is_arg(char c)
 {
 	int i;
@@ -89,7 +77,8 @@ void fill_precision(curr *flag, va_list args)
 		ft_putchar_str(&tmp, flag->arg[i]);
 		i++;
 	}
-	flag->precision = ft_atoi(tmp ? tmp : "0");	
+	flag->precision = ft_atoi(tmp ? tmp : "-1");
+	flag->precision = flag->precision == 0 ? - 1 : flag->precision;
 	tmp ? free(tmp) : 0;
 }
 
@@ -229,7 +218,6 @@ void	arg_putunsigned(curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	unsigned int n;
-	va_list tmp;
 
 	n = va_arg(args, unsigned int);
 	to_ret = ft_nbrlen(n);
@@ -246,7 +234,6 @@ void	arg_puthexa(curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	unsigned int n;
-	va_list tmp;
 
 	n = va_arg(args, unsigned int);
 	to_ret = ft_strlen(ft_putnbr_base_u(n, HEXD));
@@ -260,16 +247,76 @@ void	arg_puthexa(curr *flag, va_list args, int *ret)
 	*ret += to_ret;
 }
 
+/*
+void	arg_putstr(curr *flag, va_list args, int *ret)
+{
+	int to_ret;
+	char *tmp;
+	char *str;
+
+	tmp = NULL;
+	tmp = va_arg(args, char *);
+	str = NULL;
+	str = ft_strdup(tmp);
+	to_ret = ft_strlen(str);
+	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	if (tmp && tmp[0] == '\0')
+	{
+		ft_putstr("(null)");
+		return ;
+	}
+	if (flag->precision < ft_strlen(str) && flag->precision > 0)
+		str[flag->precision] = '\0';
+	to_ret = ft_strlen(str);
+	ft_putstr(str);
+	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	to_ret = to_ret < flag->width ? flag->width : to_ret;
+	*ret += to_ret;
+}
+*/
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c < 127)
+		return (1);
+	return (0);
+}
+
+int	is_hidden(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isprint(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void ft_str(char *str)
+{
+	if (!str || str[0] == '\0')
+		write(1, "(null)", 6);
+	else
+		write(1, str, ft_strlen(str));
+}
+
 void	arg_putstr(curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	char *str;
-	va_list tmp;
+	char *tmp;
 
-	str = va_arg(args, char *);
+	tmp = va_arg(args, char *);
+	str = ft_strdup(tmp);
+	if (flag->precision >0 && flag->precision < ft_strlen(str))
+		str[flag->precision] = '\0';
 	to_ret = ft_strlen(str);
 	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
-	ft_putstr(str);
+	flag->precision > -1 ? ft_putstr(str) : 0;
 	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
@@ -279,7 +326,6 @@ void	arg_putchar(curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	char c;
-	va_list tmp;
 
 	c = (char)va_arg(args, int);
 	to_ret = 1;
@@ -294,7 +340,6 @@ void	arg_putptr(curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	unsigned long int n;
-	va_list tmp;
 
 	n = va_arg(args, unsigned long int);
 	to_ret = ft_strlen(ft_putnbr_base_u(n, HEXD)) + 2;
@@ -321,7 +366,6 @@ int	print_struct(curr *flag, va_list args)
 	flag->type == 'X' ? arg_puthexa(flag, args, &ret) : 0;
 	flag->type == 'c' ? arg_putchar(flag, args, &ret) : 0;
 	return (ret);
-	//printf("%d", ret);
 }
 
 char *get_next_arg(const char *str, int i)
@@ -349,7 +393,6 @@ int	ft_printf(const char *str, ...)
 {
 	int i;
 	int ret;
-	char *tmp;
 
 	i = 0;
 	va_list args;
@@ -374,11 +417,5 @@ int	ft_printf(const char *str, ...)
 			}		
 	}
 	va_end(args);
-	printf("\n%d", ret);
 	return (ret);
-}
-
-int	main(void)
-{
-	ft_printf("12345678 ' %s", "test");
 }
