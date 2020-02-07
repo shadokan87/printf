@@ -184,11 +184,20 @@ void	write_precision(int precision, int len)
 	}
 }
 
-void	write_width(curr *flag, int len)
+void	write_width(curr *flag, int len, int exception)
 {
 	int tmp;
-
+	
 	tmp = flag->width;
+	if (exception > -1)
+	{
+		while (exception)
+		{
+			ft_putchar(' ');
+			exception--;
+		}
+		return ;
+	}
 	if (tmp == 0 || tmp <= len)
 		return ;
 	while (tmp != len)
@@ -207,10 +216,10 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	to_ret = ft_nbrlen(n);
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	n != 0 ? ft_putnbr(n) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	*ret += to_ret;
 }
 
@@ -223,9 +232,9 @@ void	arg_putunsigned(curr *flag, va_list args, int *ret)
 	to_ret = ft_nbrlen(n);
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	n != 0 ? ft_putstr(ft_putnbr_base_u(n, DEC)) : 0;
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
@@ -239,10 +248,10 @@ void	arg_puthexa(curr *flag, va_list args, int *ret)
 	to_ret = ft_strlen(ft_putnbr_base_u(n, HEXD));
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	n != 0 ? ft_putstr(ft_putnbr_base_u(n, flag->type
 	== 'x' ? HEXD : MAJHEXD)) : 0;
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
@@ -259,7 +268,7 @@ void	arg_putstr(curr *flag, va_list args, int *ret)
 	str = NULL;
 	str = ft_strdup(tmp);
 	to_ret = ft_strlen(str);
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	if (tmp && tmp[0] == '\0')
 	{
 		ft_putstr("(null)");
@@ -269,7 +278,7 @@ void	arg_putstr(curr *flag, va_list args, int *ret)
 		str[flag->precision] = '\0';
 	to_ret = ft_strlen(str);
 	ft_putstr(str);
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
@@ -315,15 +324,19 @@ void	arg_putstr(curr *flag, va_list args, int *ret)
 	int to_ret;
 	char *str;
 	char *tmp;
+	int i;
 
+	i = 0;
 	tmp = va_arg(args, char *);
 	str = ft_strdup(tmp);
 	if (flag->precision >0 && flag->precision < ft_strlen(str))
 		str[flag->precision] = '\0';
 	to_ret = hidden_strlen(str, tmp);
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret,
+	flag->precision == -1 ? flag->width : -1) : 0;
 	flag->precision > -1 ? ft_putstr(str) : 0;
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret,
+	flag->precision == -1 ? flag->width : -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
@@ -335,9 +348,9 @@ void	arg_putchar(curr *flag, va_list args, int *ret)
 
 	c = (char)va_arg(args, int);
 	to_ret = 1;
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	ft_putchar(c);
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
@@ -351,9 +364,9 @@ void	arg_putptr(curr *flag, va_list args, int *ret)
 	to_ret = ft_strlen(ft_putnbr_base_u(n, HEXD)) + 2;
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
-	flag->width_type != DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	ft_putptr(n);
-	flag->width_type == DASH ? write_width(flag, to_ret) : 0;
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
