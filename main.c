@@ -14,5 +14,5 @@ int main(void)
         ft_putchar_str(&hidden, 31);
         i++;
     }
-    printf("%6.6d", -33);
+    ft_printf("%07d", -54);
 }

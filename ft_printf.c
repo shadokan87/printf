@@ -202,7 +202,7 @@ void	write_width(curr *flag, int len, int exception)
 		return ;
 	while (tmp != len)
 	{
-		ft_putchar(tmp != ZERO ? ' ' : '0');
+		ft_putchar(flag->width_type == ZERO ? '0' : ' ');
 		tmp--;
 	}
 }
@@ -218,8 +218,9 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	to_ret = ft_nbrlen(n) + (n < 0 ? 1 : 0);
 	to_ret = flag->precision > 0 && flag->precision > to_ret ?
 	flag->precision : to_ret;
+	swap < 0 && flag->width_type == ZERO ? ft_putchar('-') : 0;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	swap < 0 ? ft_putchar('-') : 0;
+	swap < 0 && flag->width_type != ZERO ? ft_putchar('-') : 0;
 	write_precision(flag->precision, ft_nbrlen(n));
 	n < 0 ? n *= -1 : 0;
 	ft_putnbr(n);
