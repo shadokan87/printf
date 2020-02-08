@@ -14,5 +14,5 @@ int main(void)
         ft_putchar_str(&hidden, 31);
         i++;
     }
-    printf("%4.s", hidden);
+    ft_printf("%-5.4d", 33);
 }

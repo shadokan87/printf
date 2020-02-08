@@ -213,12 +213,12 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	int n;
 
 	n = va_arg(args, int);
-	to_ret = ft_nbrlen(n);
-	write_precision(flag->precision, to_ret);
-	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
+	to_ret = ft_nbrlen(n) + (n < 0 ? 1 : 0);
+	to_ret = flag->precision > 0 && flag->precision > to_ret ?
+	flag->precision : to_ret;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	n != 0 ? ft_putnbr(n) : 0;
-	to_ret = to_ret < flag->width ? flag->width : to_ret;
+	write_precision(flag->precision, ft_nbrlen(n) + (n < 0 ? 1 : 0));
+	ft_putnbr(n);
 	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	*ret += to_ret;
 }
