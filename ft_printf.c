@@ -124,8 +124,12 @@ void	fill_width(curr *flag, va_list args)
 		i++;
 	}
 	i = 0;
-	while (contain_num(tmp) && !is_num(tmp[i]) && !c_str(tmp, STAR))
+	if (tmp && tmp[i] == '0')
 		i++;
+	while (contain_num(tmp) && !is_num(tmp[i]) && !c_str(tmp, STAR))
+	{
+		i++;
+	}
 	while (tmp && is_num(tmp[i]) && !c_str(tmp, STAR))
 	{
 		ft_putchar_str(&n, tmp[i]);
@@ -215,16 +219,19 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 
 	n = va_arg(args, int);
 	swap = n;
-	to_ret = ft_nbrlen(n) + (n < 0 ? 1 : 0);
+	to_ret = ft_nbrlen(n);
 	to_ret = flag->precision > 0 && flag->precision > to_ret ?
 	flag->precision : to_ret;
-	swap < 0 && flag->width_type == ZERO ? ft_putchar('-') : 0;
+	n < 0 ? flag->width-- : 0;
+	n < 0 && flag->precision == 0 ? ft_putchar('-') : 0;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	swap < 0 && flag->width_type != ZERO ? ft_putchar('-') : 0;
+	n < 0 && flag->precision != 0 ? ft_putchar('-') : 0;
 	write_precision(flag->precision, ft_nbrlen(n));
 	n < 0 ? n *= -1 : 0;
-	ft_putnbr(n);
+	flag->precision == -1 ? ft_putchar(' '): ft_putnbr(n);
 	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
+	to_ret += (swap < 0 ? 1 : 0);
+	to_ret = to_ret < flag->width ? flag->width + (swap < 0 ? 1 : 0): to_ret;
 	*ret += to_ret;
 }
 
@@ -260,34 +267,6 @@ void	arg_puthexa(curr *flag, va_list args, int *ret)
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }
-
-/*
-void	arg_putstr(curr *flag, va_list args, int *ret)
-{
-	int to_ret;
-	char *tmp;
-	char *str;
-
-	tmp = NULL;
-	tmp = va_arg(args, char *);
-	str = NULL;
-	str = ft_strdup(tmp);
-	to_ret = ft_strlen(str);
-	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	if (tmp && tmp[0] == '\0')
-	{
-		ft_putstr("(null)");
-		return ;
-	}
-	if (flag->precision < ft_strlen(str) && flag->precision > 0)
-		str[flag->precision] = '\0';
-	to_ret = ft_strlen(str);
-	ft_putstr(str);
-	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
-	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	*ret += to_ret;
-}
-*/
 
 void ft_str(char *str)
 {
