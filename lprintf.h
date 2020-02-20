@@ -12,6 +12,8 @@
 # define STAR '*'
 # define DASH '-'
 # define ZERO '0'
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 int	ft_atoi(char *str);
 int	ft_nbrlen(int n);

@@ -6,13 +6,13 @@
 #    By: jgengo <jgengo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 10:39:10 by jgengo            #+#    #+#              #
-#    Updated: 2016/12/01 11:28:33 by jgengo           ###   ########.fr        #
+#    Updated: 2020/02/20 17:02:25 by motoure          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_atoi.c ft_memsub.c ft_nbrlen.c ft_printf.c ft_putnbr.c ft_putnbr_base.c ft_putptr.c ft_putstr.c ft_putunsigned.c ft_realloc.c ft_strdup.c ft_strlen.c ft_strrev.c ft_putchar_str.c ft_isprint.c is_hidden.c ft_ptrlen.c\
+SRC = ft_atoi.c ft_memsub.c ft_nbrlen.c ft_printf.c ft_putnbr.c ft_putnbr_base.c ft_putptr.c ft_putstr.c ft_putnbr_base_u.c ft_realloc.c ft_strdup.c ft_strlen.c ft_strrev.c ft_putchar_str.c ft_isprint.c is_hidden.c ft_ptrlen.c\
 
 OBJ = $(subst .c,.o,$(SRC))
 
