@@ -118,6 +118,11 @@ void	fill_width(curr *flag, va_list args)
 	i = 0;
 	tmp = NULL;
 	n = NULL;
+	if (flag->arg[0] == 0)
+	{
+		
+		return ;
+	}
 	while (flag->arg[i] && flag->arg[i] != '.')
 	{
 		ft_putchar_str(&tmp, flag->arg[i]);

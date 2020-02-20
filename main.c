@@ -3,5 +3,5 @@
 
 int main(void)
 {
-   ft_printf("%0.d", 5);
+   ft_printf("%0d", 5);
 }
