@@ -19,6 +19,7 @@ int	ft_strlen(char *str);
 int	ft_printf(const char *str, ...);
 int	is_hidden(char *str);
 int	ft_isprint(int c);
+int		ft_ptrlen(unsigned long int ptr);
 void	ft_putstr(char *str);
 void	ft_putnbr(int n);
 void	ft_putptr(unsigned long int ptr);

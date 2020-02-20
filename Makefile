@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRC = ft_atoi.c ft_memsub.c ft_nbrlen.c ft_printf.c ft_putnbr.c ft_putnbr_base.c ft_putptr.c ft_putstr.c ft_putunsigned.c ft_realloc.c ft_strdup.c ft_strlen.c ft_strrev.c ft_putchar_str.c ft_isprint.c is_hidden.c\
+SRC = ft_atoi.c ft_memsub.c ft_nbrlen.c ft_printf.c ft_putnbr.c ft_putnbr_base.c ft_putptr.c ft_putstr.c ft_putunsigned.c ft_realloc.c ft_strdup.c ft_strlen.c ft_strrev.c ft_putchar_str.c ft_isprint.c is_hidden.c ft_ptrlen.c\
 
 OBJ = $(subst .c,.o,$(SRC))
 

@@ -18,7 +18,7 @@ int	is_arg(char c)
 	int i;
 	char *arg_list;
 
-	arg_list = ft_strdup("cspdiuxX");
+	arg_list = ft_strdup("cspdiuxX%");
 	i = 0;
 	while (arg_list[i])
 	{
@@ -235,23 +235,6 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	to_ret = to_ret < flag->width ? flag->width + (swap < 0 ? 1 : 0): to_ret;
 	*ret += to_ret;
 }
-/*
-void	arg_putunsigned(curr *flag, va_list args, int *ret)
-{
-	int to_ret;
-	unsigned int n;
-
-	n = va_arg(args, unsigned int);
-	to_ret = ft_nbrlen(n);
-	write_precision(flag->precision, to_ret);
-	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
-	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	n != 0 ? ft_putstr(ft_putnbr_base_u(n, DEC)) : 0;
-	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
-	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	*ret += to_ret;
-}
-*/
 
 void	arg_putunsigned(curr *flag, va_list args, int *ret)
 {
@@ -267,7 +250,7 @@ void	arg_putunsigned(curr *flag, va_list args, int *ret)
 	flag->precision == -1 ? (n == 0 && flag->width > 0 ? ft_putchar(' ') : 0) : ft_putstr(ft_putnbr_base_u(n, DEC));
 	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	*ret += to_ret;
+	*ret += flag->precision == -1 ? (n == 0 && flag->width > 0 ? to_ret : 0) : to_ret;
 }
 
 void	arg_puthexa(curr *flag, va_list args, int *ret)
@@ -349,7 +332,7 @@ void	arg_putchar(curr *flag, va_list args, int *ret)
 	int to_ret;
 	char c;
 
-	c = (char)va_arg(args, int);
+	c = flag->type == '%' ? '%' : (char)va_arg(args, int);
 	to_ret = 1;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
 	ft_putchar(c);
@@ -364,7 +347,7 @@ void	arg_putptr(curr *flag, va_list args, int *ret)
 	unsigned long int n;
 
 	n = va_arg(args, unsigned long int);
-	to_ret = ft_strlen(ft_putnbr_base_u(n, HEXD)) + 2;
+	to_ret = ft_ptrlen(n);
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
@@ -387,6 +370,7 @@ int	print_struct(curr *flag, va_list args)
 	flag->type == 'x' ? arg_puthexa(flag, args, &ret) : 0;
 	flag->type == 'X' ? arg_puthexa(flag, args, &ret) : 0;
 	flag->type == 'c' ? arg_putchar(flag, args, &ret) : 0;
+	flag->type == '%' ? arg_putchar(flag, args, &ret) : 0;
 	return (ret);
 }
 
