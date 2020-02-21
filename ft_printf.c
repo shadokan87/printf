@@ -118,11 +118,6 @@ void	fill_width(curr *flag, va_list args)
 	i = 0;
 	tmp = NULL;
 	n = NULL;
-	if (flag->arg[0] == 0)
-	{
-		
-		return ;
-	}
 	while (flag->arg[i] && flag->arg[i] != '.')
 	{
 		ft_putchar_str(&tmp, flag->arg[i]);
@@ -131,7 +126,7 @@ void	fill_width(curr *flag, va_list args)
 	i = 0;
 	if (tmp && tmp[i] == '0')
 		i++;
-	while (contain_num(tmp) && !is_num(tmp[i]) && !c_str(tmp, STAR))
+	while (tmp && tmp[i] && contain_num(tmp) && !is_num(tmp[i]) && !c_str(tmp, STAR))
 	{
 		i++;
 	}
@@ -230,15 +225,15 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	n < 0 ? flag->width-- : 0;
 	n < 0 && flag->precision == 0 && flag->width_type == ZERO ? ft_putchar('-') : 0;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
-	flag->precision == -1 ? ft_putchar(' '): ft_putnbr(n);
+	n < 0 && flag->precision != 0 ? ft_putchar('-') : 0;
 	write_precision(flag->precision, ft_nbrlen(n));
 	n < 0 ? n *= -1 : 0;
-	swap < 0 && flag->precision == 0 && flag->width_type != ZERO ? (n != INT_MAX && n != INT_MIN ? ft_putchar('-') : 0) : 0;
-	flag->precision == -1 ? ft_putchar(' ') : ft_putnbr(n);
+	swap < 0 && flag->precision == 0 && flag->width_type != ZERO ? ft_putchar('-') : 0;
+	flag->precision == -1 && n == 0 ? (flag->width > 0 ? ft_putchar(' ') : 0) : ft_putnbr(n);
 	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret += (swap < 0 ? 1 : 0);
 	to_ret = to_ret < flag->width ? flag->width + (swap < 0 ? 1 : 0): to_ret;
-	*ret += to_ret + (n == INT_MAX ? 1 : 0);
+	*ret += to_ret;
 }
 
 void	arg_putunsigned(curr *flag, va_list args, int *ret)
