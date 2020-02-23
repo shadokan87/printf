@@ -4,7 +4,7 @@
 int		is_num(char c)
 {
 	if (c >= '0' && c <= '9')
-		return(1);
+		return (1);
 	return (0);
 }
 
@@ -15,8 +15,8 @@ void	ft_putchar(char c)
 
 int	is_arg(char c)
 {
-	int i;
-	char *arg_list;
+	int		i;
+	char	*arg_list;
 
 	arg_list = ft_strdup("cspdiuxX%");
 	i = 0;
@@ -29,7 +29,7 @@ int	is_arg(char c)
 	return (0);
 }
 
-int c_str(char *str, char c)
+int	c_str(char *str, char c)
 {
 	int i;
 
@@ -47,18 +47,18 @@ int c_str(char *str, char c)
 
 typedef struct
 {
-	char *arg;
-	char type;
-	int precision;
-	int width;
-	int width_type;
+	char	*arg;
+	char	type;
+	int		precision;
+	int		width;
+	int		width_type;
 
-} curr;
+}			curr;
 
 void fill_precision(curr *flag, va_list args)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	tmp = NULL;
 	i = 0;
@@ -78,7 +78,7 @@ void fill_precision(curr *flag, va_list args)
 		i++;
 	}
 	flag->precision = ft_atoi(tmp ? tmp : "-1");
-	flag->precision = flag->precision == 0 ? - 1 : flag->precision;
+	flag->precision = flag->precision == 0 ? -1 : flag->precision;
 	tmp ? free(tmp) : 0;
 }
 
@@ -109,42 +109,54 @@ int		contain_num(char *str)
 	return (ret);
 }
 
-void	fill_width(curr *flag, va_list args)
+char	*get_width(curr *flag)
 {
-	int i;
-	char *tmp;
-	char *n;
+	int		i;
+	char	*tmp;
 
-	i = 0;
 	tmp = NULL;
-	n = NULL;
+	i = 0;
 	while (flag->arg[i] && flag->arg[i] != '.')
 	{
 		ft_putchar_str(&tmp, flag->arg[i]);
 		i++;
 	}
+	return (tmp);
+}
+
+void	fill_width(curr *flag, va_list args)
+{
+	int		i;
+	char	*tmp;
+	char	*n;
+
 	i = 0;
+	tmp = get_width(flag);
+	n = NULL;
 	if (tmp && tmp[i] == '0')
 		i++;
-	while (tmp && tmp[i] && contain_num(tmp) && !is_num(tmp[i]) && !c_str(tmp, STAR))
-	{
+	while (tmp && tmp[i] && contain_num(tmp) &&
+			!is_num(tmp[i]) && !c_str(tmp, STAR))
 		i++;
-	}
 	while (tmp && is_num(tmp[i]) && !c_str(tmp, STAR))
 	{
 		ft_putchar_str(&n, tmp[i]);
 		i++;
 	}
-	c_str(tmp, STAR) ? flag->width = va_arg(args, int) :
-	(flag->width = ft_atoi(n ? n : "0"));
+	if (n)
+	{
+		c_str(tmp, STAR) ? flag->width = va_arg(args, int) :
+		(flag->width = ft_atoi(n));
+	}
+	!n ? flag->width = 0 : 0;
 	n ? free(n) : 0;
 	tmp ? free(tmp) : 0;
 }
 
 void	fill_width_type(curr *flag)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	tmp = NULL;
 	i = 0;
