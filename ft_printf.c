@@ -264,10 +264,10 @@ void	arg_puthexa(curr *flag, va_list args, int *ret)
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
 	n != 0 ? ft_putstr(ft_putnbr_base_u(n, flag->type
- 	== 'x' ? HEXD : MAJHEXD)) : (n == 0 ? ft_putchar('0') : 0);
+ 	== 'x' ? HEXD : MAJHEXD)) : (n == 0 ? (flag->precision != -1 ? ft_putchar('0') : (flag->precision == -1 && flag->width > 0 ? ft_putchar(' ') : 0)) : 0);
 	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	*ret += to_ret;
+	*ret += to_ret - (flag->precision == -1 && flag->width == 0 && n == 0 ? to_ret : 0);
 }
 
 void ft_str(char *str)

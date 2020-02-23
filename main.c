@@ -3,5 +3,7 @@
 
 int main(void)
 {
-   ft_printf("%-5.0d", 0);
+   printf("%d", ft_printf("%-40.32x", 0));
 }
+
+//ft_putchar(flag->precision == -1 ? ' ' : '0') : 0);
