@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/23 09:09:07 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/23 09:09:10 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lprintf.h"
 
-static void	ft_putchar(char c)
+static void		ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int n)
+void			ft_putnbr(int n)
 {
 	int sign;
 

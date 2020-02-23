@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/23 09:19:45 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/23 09:19:53 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lprintf.h"
 
-int	count(int n, int b_len)
+int			count(int n, int b_len)
 {
 	int count;
 
@@ -14,15 +25,11 @@ int	count(int n, int b_len)
 	return (count);
 }
 
-int	check_base(char *base)
+static int	chck(char *base)
 {
 	int i;
-	int y;
 
 	i = 0;
-	y = 0;
-	if (ft_strlen(base) <= 1 || !base)
-		return (0);
 	while (base[i])
 	{
 		if (base[i] == ' ' || base[i] == '-'
@@ -30,26 +37,38 @@ int	check_base(char *base)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+static int	check_base(char *base)
+{
+	int i;
+	int y;
+
+	i = 0;
+	y = 0;
+	if (ft_strlen(base) <= 1 || !base || (!chck(base)))
+		return (0);
 	while (i <= ft_strlen(base) - 2)
 	{
 		y = i + 1;
 		while (y <= ft_strlen(base) - 1)
-			{
-				if (base[i] == base[y])
-					return (0);
-				y++;
-			}
+		{
+			if (base[i] == base[y])
+				return (0);
+			y++;
+		}
 		i++;
 	}
 	return (1);
 }
 
-char	*ft_putnbr_base(int n, char *base)
+char		*ft_putnbr_base(int n, char *base)
 {
-	int i;
-	char *ret;
-	int negative;
-	int b_len;
+	int		i;
+	char	*ret;
+	int		negative;
+	int		b_len;
 
 	b_len = ft_strlen(base);
 	negative = n > 0 ? 0 : 1;

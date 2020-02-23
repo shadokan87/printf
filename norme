@@ -1,0 +1,147 @@
+Norme: ./ft_atoi.c
+Norme: ./ft_isprint.c
+Error: 42 header not at top of the file
+Norme: ./ft_nbrlen.c
+Error: 42 header not at top of the file
+Error (line 4): Space before function name
+Error (line 11, col 19): missing space around :
+Norme: ./ft_memsub.c
+Error: 42 header not at top of the file
+Norme: ./ft_putchar_str.c
+Error: 42 header not at top of the file
+Error: file must end with a single empty line
+Error (line 4): declarations in ft_putchar_str are bad aligned
+Error (line 14, col 0): no newline after block
+Norme: ./ft_putnbr.c
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Norme: ./ft_ptrlen.c
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Error (line 17): function check_base has 26 lines
+Error (line 37): bad indentation
+Error (line 38): bad indentation
+Error (line 39): bad indentation
+Error (line 40): bad indentation
+Error (line 41): bad indentation
+Error (line 47): declarations in ft_putnbr_base_ptr are bad aligned
+Error (line 58): must begin only by tabulations
+Error (line 74, col 1): missing space after return
+Norme: ./ft_putnbr_base_u.c
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Error: file must end with a single empty line
+Error (line 16): function check_base has 26 lines
+Error (line 36): bad indentation
+Error (line 37): bad indentation
+Error (line 38): bad indentation
+Error (line 39): bad indentation
+Error (line 40): bad indentation
+Error (line 46): declarations in ft_putnbr_base_u are bad aligned
+Error (line 57): must begin only by tabulations
+Error (line 67, col 0): no newline after block
+Norme: ./ft_putstr.c
+Error: 42 header not at top of the file
+Norme: ./ft_putptr.c
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Error (line 17): function check_base has 26 lines
+Error (line 37): bad indentation
+Error (line 38): bad indentation
+Error (line 39): bad indentation
+Error (line 40): bad indentation
+Error (line 41): bad indentation
+Error (line 47): declarations in ft_putnbr_base_ptr are bad aligned
+Error (line 58): must begin only by tabulations
+Norme: ./ft_strdup.c
+Norme: ./ft_strlen.c
+Error: 42 header not at top of the file
+Norme: ./ft_strrev.c
+Error: 42 header not at top of the file
+Norme: ./ft_printf.c
+Error: global scope bad aligned
+Error: 24 functions in the file
+Error: 42 header not at top of the file
+Error (line 7, col 2): missing space after return
+Error (line 16): declarations in is_arg are bad aligned
+Error (line 32): Space before function name
+Error (line 48): Struct  bad aligned
+Error (line 48): declaration of Struct forbidden in .c
+Error (line 50): arg and curr not aligned.
+Error (line 56, col 2): curr have not a good prefix.
+Error (line 58): declarations in fill_precision are bad aligned
+Error (line 58): Space before function name
+Error (line 81, col 42): space after negative
+Error (line 112): declarations in fill_width are bad aligned
+Error (line 112): function fill_width has 28 lines
+Error (line 129): line has 86 characters
+Error (line 139): nested Ternary
+Error (line 144): declarations in fill_width_type are bad aligned
+Error (line 165, col 2): space before )
+Error (line 191): declarations must be followed by one empty line in write_width
+Error (line 194): spaces at the end of line
+Error (line 226): line has 85 characters
+Error (line 231): line has 88 characters
+Error (line 232): nested Ternary
+Error (line 232): line has 94 characters
+Error (line 235): nested Ternary
+Error (line 235, col 65): missing space around :
+Error (line 239): declarations must be followed by one empty line in arg_putunsigned
+Error (line 243): spaces at the end of line
+Error (line 250): nested Ternary
+Error (line 250): line has 117 characters
+Error (line 253): nested Ternary
+Error (line 253): line has 87 characters
+Error (line 256): declarations in arg_puthexa are bad aligned
+Error (line 263): nested Ternary
+Error (line 263): line has 113 characters
+Error (line 266): nested Ternary
+Error (line 267): nested Ternary
+Error (line 267): nested Ternary
+Error (line 267): must begin only by tabulations
+Error (line 267): line has 157 characters
+Error (line 270): line has 89 characters
+Error (line 273): Space before function name
+Error (line 281): declarations in hidden_of are bad aligned
+Error (line 308): declarations in arg_putstr are bad aligned
+Error (line 318, col 21): missing space around >
+Error (line 322): nested Ternary
+Error (line 325): nested Ternary
+Error (line 330): declarations in arg_putchar are bad aligned
+Error (line 344): declarations in arg_putptr are bad aligned
+Error (line 377): Space before function name
+Error (line 398): declarations in ft_printf are bad aligned
+Error (line 398): function ft_printf has 27 lines
+Error (line 398): declarations in ft_printf must be at the top of the function
+Error (line 398): declarations must be followed by one empty line in ft_printf
+Error (line 405): spaces at the end of line
+Error (line 413): bad indentation
+Error (line 414): bad indentation
+Error (line 415): bad indentation
+Error (line 416): bad indentation
+Error (line 416, col 5): missing space around +=
+Error (line 417): bad indentation
+Error (line 418): bad indentation
+Error (line 419): bad indentation
+Error (line 420): bad indentation
+Error (line 421): bad indentation
+Error (line 422): bad indentation
+Error (line 423): bad indentation
+Error (line 423): spaces at the end of line
+Error (line 423, col 3): no newline after block
+Norme: ./ft_putnbr_base.c
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Error (line 17): function check_base has 26 lines
+Error (line 37): bad indentation
+Error (line 38): bad indentation
+Error (line 39): bad indentation
+Error (line 40): bad indentation
+Error (line 41): bad indentation
+Error (line 47): declarations in ft_putnbr_base are bad aligned
+Norme: ./ft_realloc.c
+Error: 42 header not at top of the file
+Error (line 4): declarations must be followed by one empty line in ft_realloc
+Error (line 7): spaces at the end of line
+Norme: ./is_hidden.c
+Error: 42 header not at top of the file
