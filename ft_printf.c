@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:16:21 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 08:18:40 by motoure          ###   ########.fr       */
+/*   Updated: 2020/02/24 10:14:45 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		ret;
-	curr	flag;
+	t_curr	flag;
 	va_list args;
 
 	i = 0;
