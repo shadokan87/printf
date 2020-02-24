@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   fill_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/23 09:09:07 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/23 09:09:10 by motoure          ###   ########.fr       */
+/*   Created: 2020/02/24 09:16:14 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/24 09:16:16 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-void			ft_putnbr(int n)
+int	fill_struct(curr *flag, va_list args)
 {
-	int sign;
-
-	n == -2147483648 ? write(1, "-2147483648", 11) : 0;
-	n == 0 ? write(1, "0", 1) : 0;
-	if (n == -2147483648)
-		return ;
-	if (n == 0)
-		return ;
-	sign = (n > 0 ? 0 : 1);
-	n > 0 ? 0 : ft_putchar('-');
-	n = (n > 0 ? n : n * -1);
-	if (n > 9)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	flag->type = flag->arg[ft_strlen(flag->arg) - 1];
+	fill_width(flag, args);
+	fill_precision(flag, args);
+	fill_width_type(flag);
+	return (ft_strlen(flag->arg) + 1);
 }

@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   contain_num.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 08:16:21 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 08:18:40 by motoure          ###   ########.fr       */
+/*   Created: 2020/02/24 09:15:59 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/24 09:16:03 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-int	ft_printf(const char *str, ...)
+int		contain_num(char *str)
 {
-	int		i;
-	int		ret;
-	curr	flag;
-	va_list args;
+	int i;
+	int ret;
 
+	ret = 0;
 	i = 0;
-	ret = ft_strlen((char *)str);
-	reset_struct(&flag);
-	va_start(args, str);
+	if (!str)
+		return (0);
 	while (str[i])
 	{
-		if (str[i] == '%' && (flag.arg = get_next_arg(str, i)) != NULL)
-		{
-			ret -= ret > 0 ? fill_struct(&flag, args) : 0;
-			ret += print_struct(&flag, args);
-			i += ft_strlen(flag.arg) + 1;
-			reset_struct(&flag);
-		}
-		else
-			write_const(str, &i);
+		if (is_num(str[i]))
+			ret = 1;
+		i++;
 	}
-	va_end(args);
 	return (ret);
 }

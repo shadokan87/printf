@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg_putnbr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 09:15:21 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/24 09:15:24 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lprintf.h"
+
+void	arg_putnbr(curr *flag, va_list args, int *ret)
+{
+	int to_ret;
+	int n;
+	int swap;
+
+	n = va_arg(args, int);
+	swap = n;
+	to_ret = ft_nbrlen(n);
+	to_ret = flag->precision > 0 && flag->precision > to_ret ?
+	flag->precision : to_ret;
+	n < 0 ? flag->width-- : 0;
+	n < 0 && flag->precision == 0 &&
+		flag->width_type == ZERO ? ft_putchar('-') : 0;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
+	n < 0 && flag->precision != 0 ? ft_putchar('-') : 0;
+	write_precision(flag->precision, ft_nbrlen(n));
+	n < 0 ? n *= -1 : 0;
+	print_value_d(flag, n, swap, &to_ret);
+	*ret += to_ret;
+}

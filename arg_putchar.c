@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   arg_putchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/23 09:09:07 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/23 09:09:10 by motoure          ###   ########.fr       */
+/*   Created: 2020/02/24 09:14:58 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/24 09:15:01 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-void			ft_putnbr(int n)
+void	arg_putchar(curr *flag, va_list args, int *ret)
 {
-	int sign;
+	int		to_ret;
+	char	c;
 
-	n == -2147483648 ? write(1, "-2147483648", 11) : 0;
-	n == 0 ? write(1, "0", 1) : 0;
-	if (n == -2147483648)
-		return ;
-	if (n == 0)
-		return ;
-	sign = (n > 0 ? 0 : 1);
-	n > 0 ? 0 : ft_putchar('-');
-	n = (n > 0 ? n : n * -1);
-	if (n > 9)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
+	c = flag->type == '%' ? '%' : (char)va_arg(args, int);
+	to_ret = 1;
+	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
+	ft_putchar(c);
+	flag->width_type == DASH ? write_width(flag, to_ret, -1) : 0;
+	to_ret = to_ret < flag->width ? flag->width : to_ret;
+	*ret += to_ret;
 }

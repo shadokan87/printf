@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   fill_precision.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 08:16:21 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 08:18:40 by motoure          ###   ########.fr       */
+/*   Created: 2020/02/24 09:16:09 by motoure           #+#    #+#             */
+/*   Updated: 2020/02/24 09:16:11 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-int	ft_printf(const char *str, ...)
+void	fill_precision(curr *flag, va_list args)
 {
 	int		i;
-	int		ret;
-	curr	flag;
-	va_list args;
+	char	*tmp;
 
+	tmp = NULL;
 	i = 0;
-	ret = ft_strlen((char *)str);
-	reset_struct(&flag);
-	va_start(args, str);
-	while (str[i])
+	if (!c_str(flag->arg, '.'))
+		return ;
+	while (flag->arg[i] != '.')
+		i++;
+	if (flag->arg[i + 1] == STAR)
 	{
-		if (str[i] == '%' && (flag.arg = get_next_arg(str, i)) != NULL)
-		{
-			ret -= ret > 0 ? fill_struct(&flag, args) : 0;
-			ret += print_struct(&flag, args);
-			i += ft_strlen(flag.arg) + 1;
-			reset_struct(&flag);
-		}
-		else
-			write_const(str, &i);
+		flag->precision = va_arg(args, int);
+		return ;
 	}
-	va_end(args);
-	return (ret);
+	i++;
+	while (is_num(flag->arg[i]))
+	{
+		ft_putchar_str(&tmp, flag->arg[i]);
+		i++;
+	}
+	flag->precision = ft_atoi(tmp ? tmp : "-1");
+	flag->precision = flag->precision == 0 ? -1 : flag->precision;
+	tmp ? free(tmp) : 0;
 }
