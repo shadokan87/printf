@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	print_value_u(curr *flag, int n, int *to_ret)
+void	print_value_u(t_curr *flag, int n, int *to_ret)
 {
 	if (flag->precision == -1)
 		n == 0 && flag->width > 0 ? ft_putchar(' ') : 0;

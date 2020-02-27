@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-int	fill_struct(curr *flag, va_list args)
+int	fill_struct(t_curr *flag, va_list args)
 {
 	flag->type = flag->arg[ft_strlen(flag->arg) - 1];
 	fill_width(flag, args);

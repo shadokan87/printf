@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	arg_putptr(curr *flag, va_list args, int *ret)
+void	arg_putptr(t_curr *flag, va_list args, int *ret)
 {
 	int					to_ret;
 	unsigned long int	n;

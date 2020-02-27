@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	print_value_d(curr *flag, int n, int swap, int *to_ret)
+void	print_value_d(t_curr *flag, int n, int swap, int *to_ret)
 {
 	swap < 0 && flag->precision == 0 && flag->width_type
 		!= ZERO ? ft_putchar('-') : 0;

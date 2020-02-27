@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-int	print_struct(curr *flag, va_list args)
+int	print_struct(t_curr *flag, va_list args)
 {
 	int ret;
 

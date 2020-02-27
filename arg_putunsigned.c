@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	arg_putunsigned(curr *flag, va_list args, int *ret)
+void	arg_putunsigned(t_curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	int n;

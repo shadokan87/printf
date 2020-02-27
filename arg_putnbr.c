@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	arg_putnbr(curr *flag, va_list args, int *ret)
+void	arg_putnbr(t_curr *flag, va_list args, int *ret)
 {
 	int to_ret;
 	int n;
@@ -31,5 +31,5 @@ void	arg_putnbr(curr *flag, va_list args, int *ret)
 	write_precision(flag->precision, ft_nbrlen(n));
 	n < 0 ? n *= -1 : 0;
 	print_value_d(flag, n, swap, &to_ret);
-	*ret += to_ret;
+	*ret += !flag->width && flag->precision == -1 ? 0 : to_ret;
 }

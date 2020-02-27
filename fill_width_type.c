@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	fill_width_type(curr *flag)
+void	fill_width_type(t_curr *flag)
 {
 	int		i;
 	char	*tmp;

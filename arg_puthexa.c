@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	arg_puthexa(curr *flag, va_list args, int *ret)
+void	arg_puthexa(t_curr *flag, va_list args, int *ret)
 {
 	int				to_ret;
 	unsigned int	n;

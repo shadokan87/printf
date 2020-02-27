@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	write_width(curr *flag, int len, int exception)
+void	write_width(t_curr *flag, int len, int exception)
 {
 	int tmp;
 

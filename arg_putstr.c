@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	arg_putstr(curr *flag, va_list args, int *ret)
+void	arg_putstr(t_curr *flag, va_list args, int *ret)
 {
 	int		to_ret;
 	char	*str;

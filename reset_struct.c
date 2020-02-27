@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	reset_struct(curr *flag)
+void	reset_struct(t_curr *flag)
 {
 	flag->arg = NULL;
 	flag->type = '0';

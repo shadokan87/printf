@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	fill_precision(curr *flag, va_list args)
+void	fill_precision(t_curr *flag, va_list args)
 {
 	int		i;
 	char	*tmp;
