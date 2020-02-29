@@ -33,5 +33,6 @@ void	arg_putstr(t_curr *flag, va_list args, int *ret)
 		write_width(flag, to_ret,
 	flag->precision == -1 ? flag->width : -1);
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
-	*ret += to_ret;
+	to_ret = flag->width && flag->precision == -1 ? flag->width : to_ret;
+	*ret += !flag->width && flag->precision == -1 ? 0 : to_ret;
 }

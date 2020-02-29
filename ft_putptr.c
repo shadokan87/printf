@@ -86,13 +86,16 @@ static char	*ft_putnbr_base_ptr(unsigned long int n, char *base)
 	return (ft_strrev(ret));
 }
 
-void		ft_putptr(unsigned long int ptr)
+void		ft_putptr(unsigned long int ptr, t_curr *flag)
 {
-	if (ptr == 0)
-	{
+	if (flag->precision == -1 && ptr == 0)
+		ft_putstr("0x");
+	else if (ptr == 0)
 		ft_putstr("0x0");
-		return ;
-	}
-	ft_putstr("0x");
-	ft_putstr(ft_putnbr_base_ptr(ptr, HEXD));
+	else
+		{
+			ft_putstr("0x");
+			ft_putstr(ft_putnbr_base_ptr(ptr, HEXD));
+		}
+	
 }

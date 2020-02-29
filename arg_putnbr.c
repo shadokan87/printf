@@ -24,9 +24,11 @@ void	arg_putnbr(t_curr *flag, va_list args, int *ret)
 	to_ret = flag->precision > 0 && flag->precision > to_ret ?
 	flag->precision : to_ret;
 	n < 0 ? flag->width-- : 0;
+	if (n != INT_MIN)
 	n < 0 && flag->precision == 0 &&
 		flag->width_type == ZERO ? ft_putchar('-') : 0;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;
+	if (n != INT_MIN)
 	n < 0 && flag->precision != 0 ? ft_putchar('-') : 0;
 	write_precision(flag->precision, ft_nbrlen(n));
 	n < 0 ? n *= -1 : 0;

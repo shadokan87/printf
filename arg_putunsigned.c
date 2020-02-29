@@ -18,7 +18,7 @@ void	arg_putunsigned(t_curr *flag, va_list args, int *ret)
 	int n;
 
 	n = va_arg(args, int);
-	to_ret = ft_nbrlen(n);
+	to_ret = ft_nbrlen_u(n);
 	to_ret = flag->precision > 0 && flag->precision > to_ret ?
 	flag->precision : to_ret;
 	flag->width_type != DASH ? write_width(flag, to_ret, -1) : 0;

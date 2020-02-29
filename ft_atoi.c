@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "lprintf.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int return_value;
 	int i;

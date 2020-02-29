@@ -25,9 +25,10 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	while (str[i])
 	{
-		if (str[i] == '%' && (flag.arg = get_next_arg(str, i)) != NULL)
+		if (str[i] == '%' && (flag.arg = get_next_arg(str, i, args)) != NULL)
 		{
-			ret -= ret > 0 ? fill_struct(&flag, args) : 0;
+			printf("\n%s\n", flag.arg);
+			ret -= ret > 0 ? fill_struct(&flag) : 0;
 			ret += print_struct(&flag, args);
 			i += ft_strlen(flag.arg) + 1;
 			reset_struct(&flag);

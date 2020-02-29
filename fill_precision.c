@@ -12,28 +12,26 @@
 
 #include "lprintf.h"
 
-void	fill_precision(t_curr *flag, va_list args)
+void	fill_precision(t_curr *flag)
 {
 	int		i;
+	int y;
 	char	*tmp;
 
 	tmp = NULL;
 	i = 0;
+	y = 0;
 	if (!c_str(flag->arg, '.'))
 		return ;
 	while (flag->arg[i] != '.')
 		i++;
-	if (flag->arg[i + 1] == STAR)
-	{
-		flag->precision = va_arg(args, int);
-		return ;
-	}
 	i++;
 	while (is_num(flag->arg[i]))
 	{
 		ft_putchar_str(&tmp, flag->arg[i]);
 		i++;
 	}
+	
 	flag->precision = ft_atoi(tmp ? tmp : "-1");
 	flag->precision = flag->precision == 0 ? -1 : flag->precision;
 	tmp ? free(tmp) : 0;

@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-void	fill_width(t_curr *flag, va_list args)
+void	fill_width(t_curr *flag)
 {
 	int		i;
 	char	*tmp;
@@ -32,10 +32,7 @@ void	fill_width(t_curr *flag, va_list args)
 		i++;
 	}
 	if (n)
-	{
-		c_str(tmp, STAR) ? flag->width = va_arg(args, int) :
-		(flag->width = ft_atoi(n));
-	}
+		flag->width = ft_atoi(n);
 	!n ? flag->width = 0 : 0;
 	n ? free(n) : 0;
 	tmp ? free(tmp) : 0;
