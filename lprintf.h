@@ -27,6 +27,7 @@
 typedef struct	s_t_curr
 {
 	char		*arg;
+	char		*raw_arg;
 	char		type;
 	int			precision;
 	int			width;

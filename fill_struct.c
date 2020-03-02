@@ -18,5 +18,5 @@ int	fill_struct(t_curr *flag)
 	fill_width(flag);
 	fill_precision(flag);
 	fill_width_type(flag);
-	return (ft_strlen(flag->arg) + 1);
+	return (ft_strlen(flag->raw_arg) + 1);
 }

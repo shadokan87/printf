@@ -12,25 +12,59 @@
 
 #include "lprintf.h"
 
-void	write_star(char **ret, int n)
+int			locate_c(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+void		write_star(char **ret, int n)
 {
 	char *tmp;
+	char *ptr;
+	int y;
+	int precision;
 
-	tmp = NULL;
-	if (n < 0)
-		n *= -1;
-	tmp = ft_putnbr_base(n, DEC);
-	while (*tmp)
+	y = 0;
+	ptr = NULL;
+	ptr = *ret;
+	precision = 0;
+	if (ptr && locate_c(*ret, '.') >= 0)
 	{
-		ft_putchar_str(ret, tmp[0]);
-		tmp++;
+		if (n < 0)
+		{
+		tmp = ft_strdup(*ret);
+		tmp[locate_c(tmp, '.')] = '\0';
+		*ret ? free (*ret) : 0;
+		*ret = ft_strdup(tmp);
+		tmp ? free(tmp) : 0;
+		return ;
+		}
+		precision = 1;
+	}
+	if ((!precision && n < 0 && ptr && ptr[ft_strlen(ptr) - 1] != '-')
+	|| (!precision && n < 0 && !ptr))
+		ft_putchar_str(ret, '-');
+	n = n < 0 ? n * -1 : n;
+	tmp = ft_putnbr_base(n, DEC);
+	while (tmp[y])
+	{
+		ft_putchar_str(ret, tmp[y]);
+		y++;
 	}
 }
 
 char	*get_next_arg(const char *str, int i, va_list args)
 {
 	char *ret;
-	char *star;
 
 	ret = NULL;
 	i++;

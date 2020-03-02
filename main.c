@@ -3,5 +3,5 @@
 
 int main(void)
 {
-    ft_printf("%2d",2);
+  ft_printf("%*s", -32, "abc");
 }
