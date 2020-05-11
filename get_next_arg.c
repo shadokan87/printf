@@ -28,8 +28,8 @@ int		locate_c(char *str, char c)
 
 void		write_star_suite(char **ret, int n, char *ptr, int precision)
 {
-	int y;
-	char *tmp;
+	int	y;
+	char	*tmp;
 
 	tmp = NULL;
 	y = 0;
@@ -47,10 +47,10 @@ void		write_star_suite(char **ret, int n, char *ptr, int precision)
 
 void		write_star(char **ret, int n)
 {
-	char	*tmp;
-	char	*ptr;
-	int	y;
-	int	precision;
+	char		*tmp;
+	char		*ptr;
+	int		y;
+	int		precision;
 
 	y = 0;
 	ptr = NULL;
@@ -58,15 +58,15 @@ void		write_star(char **ret, int n)
 	precision = 0;
 	if (ptr && locate_c(*ret, '.') >= 0)
 	{
-	if (n < 0)
-	{
-	tmp = ft_strdup(*ret);
-	tmp[locate_c(tmp, '.')] = '\0';
-	*ret ? free(*ret) : 0;
-	*ret = ft_strdup(tmp);
-	tmp ? free(tmp) : 0;
-	return ;
-	}
+		if (n < 0)
+		{
+			tmp = ft_strdup(*ret);
+			tmp[locate_c(tmp, '.')] = '\0';
+			*ret ? free(*ret) : 0;
+			*ret = ft_strdup(tmp);
+			tmp ? free(tmp) : 0;
+			return ;
+		}
 	precision = 1;
 	}
 	write_star_suite(ret, n, ptr, precision);
