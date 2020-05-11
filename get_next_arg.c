@@ -26,7 +26,7 @@ int		locate_c(char *str, char c)
 	return (-1);
 }
 
-void		write_star_suite(char **ret, int n, char *ptr, char *tmp
+void		write_star_suite(char **ret, int n, char *ptr, char *tmp,
 int y, int precision)
 {
 	if ((!precision && n < 0 && ptr && ptr[ft_strlen(ptr) - 1] != '-')
