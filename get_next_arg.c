@@ -26,9 +26,11 @@ int		locate_c(char *str, char c)
 	return (-1);
 }
 
-void		write_star_suite(char **ret, int n, char *ptr, char *tmp,
-int y, int precision)
+void		write_star_suite(char **ret, int n, char *ptr, char *tmp, int precision)
 {
+	int y;
+
+	y = 0;
 	if ((!precision && n < 0 && ptr && ptr[ft_strlen(ptr) - 1] != '-')
 	|| (!precision && n < 0 && !ptr))
 		ft_putchar_str(ret, '-');
@@ -65,7 +67,7 @@ void		write_star(char **ret, int n)
 		}
 		precision = 1;
 	}
-	write_star_suite(ret, n, ptr, tmp, y, precision);
+	write_star_suite(ret, n, ptr, tmp, precision);
 }
 
 char		*get_next_arg(const char *str, int i, va_list args)
