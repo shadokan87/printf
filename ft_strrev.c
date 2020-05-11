@@ -16,7 +16,7 @@ char	*ft_strrev(char *str)
 {
 	int		i;
 	int		y;
-	char	swap;
+	char		swap;
 
 	swap = '0';
 	i = 0;
