@@ -15,7 +15,7 @@
 void	print_value_d(t_curr *flag, int n, int swap, int *to_ret)
 {
 	if (swap != INT_MIN)
-	swap < 0 && flag->precision == 0 && flag->width_type
+		swap < 0 && flag->precision == 0 && flag->width_type
 		!= ZERO ? ft_putchar('-') : 0;
 	if (flag->precision == -1 && n == 0 && swap != INT_MIN)
 		flag->width > 0 ? ft_putchar(' ') : 0;

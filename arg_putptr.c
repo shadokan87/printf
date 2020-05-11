@@ -22,10 +22,12 @@ void	arg_putptr(t_curr *flag, va_list args, int *ret)
 	write_precision(flag->precision, to_ret);
 	to_ret = to_ret < flag->precision ? flag->precision : to_ret;
 	if (flag->width_type != DASH)
-		write_width(flag, to_ret, flag->precision == -1 && n == 0 && flag->width ? flag->width - 2 : -1);
+		write_width(flag, to_ret, flag->precision ==
+		-1 && n == 0 && flag->width ? flag->width - 2 : -1);
 	ft_putptr(n, flag);
 	if (flag->width_type == DASH)
-		write_width(flag, to_ret, flag->precision == -1 && n == 0 && flag->width ? flag->width - 2 : -1);
+		write_width(flag, to_ret, flag->precision ==
+		-1 && n == 0 && flag->width ? flag->width - 2 : -1);
 	to_ret = to_ret < flag->width ? flag->width : to_ret;
 	*ret += to_ret;
 }

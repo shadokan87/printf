@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-char	*get_raw_arg(const char *str, int i)
+char		*get_raw_arg(const char *str, int i)
 {
 	char *ret;
 
@@ -33,7 +33,7 @@ char	*get_raw_arg(const char *str, int i)
 	return (ret);
 }
 
-int	ft_printf(const char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	int		i;
 	int		ret;
@@ -49,7 +49,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%' && (flag.arg = get_next_arg(str, i, args)) != NULL)
 		{
 			flag.raw_arg = get_raw_arg(str, i);
-			ret -= ret > 0 ? (fill_struct(&flag)): 0;
+			ret -= ret > 0 ? (fill_struct(&flag)) : 0;
 			ret += print_struct(&flag, args);
 			i += ft_strlen(flag.raw_arg) + 1;
 			reset_struct(&flag);

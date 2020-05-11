@@ -93,9 +93,8 @@ void		ft_putptr(unsigned long int ptr, t_curr *flag)
 	else if (ptr == 0)
 		ft_putstr("0x0");
 	else
-		{
-			ft_putstr("0x");
-			ft_putstr(ft_putnbr_base_ptr(ptr, HEXD));
-		}
-	
+	{
+		ft_putstr("0x");
+		ft_putstr(ft_putnbr_base_ptr(ptr, HEXD));
+	}
 }

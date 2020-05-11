@@ -14,8 +14,8 @@
 
 void	fill_precision(t_curr *flag)
 {
-	int		i;
-	int y;
+	int	i;
+	int	y;
 	char	*tmp;
 
 	tmp = NULL;
@@ -31,7 +31,6 @@ void	fill_precision(t_curr *flag)
 		ft_putchar_str(&tmp, flag->arg[i]);
 		i++;
 	}
-	
 	flag->precision = ft_atoi(tmp ? tmp : "-1");
 	flag->precision = flag->precision == 0 ? -1 : flag->precision;
 	tmp ? free(tmp) : 0;

@@ -12,7 +12,7 @@
 
 #include "lprintf.h"
 
-int			locate_c(char *str, char c)
+int		locate_c(char *str, char c)
 {
 	int i;
 
@@ -26,30 +26,9 @@ int			locate_c(char *str, char c)
 	return (-1);
 }
 
-void		write_star(char **ret, int n)
+void		write_star_suite(char **ret, int n, char *ptr, char *tmp
+int y, int precision)
 {
-	char *tmp;
-	char *ptr;
-	int y;
-	int precision;
-
-	y = 0;
-	ptr = NULL;
-	ptr = *ret;
-	precision = 0;
-	if (ptr && locate_c(*ret, '.') >= 0)
-	{
-		if (n < 0)
-		{
-		tmp = ft_strdup(*ret);
-		tmp[locate_c(tmp, '.')] = '\0';
-		*ret ? free (*ret) : 0;
-		*ret = ft_strdup(tmp);
-		tmp ? free(tmp) : 0;
-		return ;
-		}
-		precision = 1;
-	}
 	if ((!precision && n < 0 && ptr && ptr[ft_strlen(ptr) - 1] != '-')
 	|| (!precision && n < 0 && !ptr))
 		ft_putchar_str(ret, '-');
@@ -62,7 +41,34 @@ void		write_star(char **ret, int n)
 	}
 }
 
-char	*get_next_arg(const char *str, int i, va_list args)
+void		write_star(char **ret, int n)
+{
+	char	*tmp;
+	char	*ptr;
+	int	y;
+	int	precision;
+
+	y = 0;
+	ptr = NULL;
+	ptr = *ret;
+	precision = 0;
+	if (ptr && locate_c(*ret, '.') >= 0)
+	{
+		if (n < 0)
+		{
+		tmp = ft_strdup(*ret);
+		tmp[locate_c(tmp, '.')] = '\0';
+		*ret ? free(*ret) : 0;
+		*ret = ft_strdup(tmp);
+		tmp ? free(tmp) : 0;
+		return ;
+		}
+		precision = 1;
+	}
+	write_star_suite(ret, n, ptr, tmp, y, precision);
+}
+
+char		*get_next_arg(const char *str, int i, va_list args)
 {
 	char *ret;
 
