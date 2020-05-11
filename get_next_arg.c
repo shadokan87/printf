@@ -26,10 +26,12 @@ int		locate_c(char *str, char c)
 	return (-1);
 }
 
-void		write_star_suite(char **ret, int n, char *ptr, char *tmp, int precision)
+void		write_star_suite(char **ret, int n, char *ptr, int precision)
 {
 	int y;
+	char *tmp;
 
+	tmp = NULL;
 	y = 0;
 	if ((!precision && n < 0 && ptr && ptr[ft_strlen(ptr) - 1] != '-')
 	|| (!precision && n < 0 && !ptr))
@@ -56,18 +58,18 @@ void		write_star(char **ret, int n)
 	precision = 0;
 	if (ptr && locate_c(*ret, '.') >= 0)
 	{
-		if (n < 0)
-		{
-		tmp = ft_strdup(*ret);
-		tmp[locate_c(tmp, '.')] = '\0';
-		*ret ? free(*ret) : 0;
-		*ret = ft_strdup(tmp);
-		tmp ? free(tmp) : 0;
-		return ;
-		}
-		precision = 1;
+	if (n < 0)
+	{
+	tmp = ft_strdup(*ret);
+	tmp[locate_c(tmp, '.')] = '\0';
+	*ret ? free(*ret) : 0;
+	*ret = ft_strdup(tmp);
+	tmp ? free(tmp) : 0;
+	return ;
 	}
-	write_star_suite(ret, n, ptr, tmp, precision);
+	precision = 1;
+	}
+	write_star_suite(ret, n, ptr, precision);
 }
 
 char		*get_next_arg(const char *str, int i, va_list args)
