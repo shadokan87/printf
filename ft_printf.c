@@ -6,13 +6,13 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:16:21 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 10:14:45 by motoure          ###   ########.fr       */
+/*   Updated: 2020/05/13 15:57:04 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-char		*get_raw_arg(const char *str, int i)
+char	*get_raw_arg(const char *str, int i)
 {
 	char *ret;
 

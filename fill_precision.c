@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:16:09 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 09:16:11 by motoure          ###   ########.fr       */
+/*   Updated: 2020/05/13 15:55:56 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	fill_precision(t_curr *flag)
 {
-	int	i;
-	int	y;
+	int		i;
+	int		y;
 	char	*tmp;
 
 	tmp = NULL;
