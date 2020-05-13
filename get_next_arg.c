@@ -6,13 +6,13 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:20:12 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 09:22:10 by motoure          ###   ########.fr       */
+/*   Updated: 2020/05/13 15:35:23 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lprintf.h"
 
-int	locate_c(char *str, char c)
+int		locate_c(char *str, char c)
 {
 	int i;
 
